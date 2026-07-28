@@ -7,6 +7,46 @@ from PIL import Image
 
 # ===================== 基础配置 =====================
 st.set_page_config(page_title="头像抽奖", layout="wide")
+import streamlit as st
+import base64
+
+# 函数：读取本地图片转为base64
+def set_bg_image(image_file):
+    with open(image_file, "rb") as f:
+        data = f.read()
+    base64_str = base64.b64encode(data).decode()
+    bg_style = f"""
+    <style>
+    .stApp {{
+        background-image: url("data:image/png;base64,{base64_str}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }}
+    /* 半透明遮罩，防止文字看不清，可自行调整透明度 0~1 */
+    .stApp::before {{
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 0;
+    }}
+    .stApp > div {{
+        position: relative;
+        z-index: 1;
+    }}
+    </style>
+    """
+    st.markdown(bg_style, unsafe_allow_html=True)
+
+# ===================== 配置页面 =====================
+st.set_page_config(page_title="头像在线抽奖", layout="wide")
+
+# 调用函数，填入你的背景图片文件名（和1.py同目录）
+set_bg_image("bg.png")
 LOTTERY_PASSWORD = "123456"  # 修改你的登录密码
 
 # 【固定抽奖人员名单，不要改动顺序】
