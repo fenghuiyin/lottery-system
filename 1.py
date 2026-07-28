@@ -6,7 +6,7 @@ import os
 from PIL import Image
 
 # ===================== 基础配置 =====================
-st.set_page_config(page_title="头像抽奖系统", layout="wide")
+st.set_page_config(page_title="头像抽奖", layout="wide")
 LOTTERY_PASSWORD = "123456"  # 修改你的登录密码
 
 # 【固定抽奖人员名单，不要改动顺序】
@@ -34,7 +34,7 @@ if "final_winners" not in st.session_state:
 
 # ===================== 密码登录页面 =====================
 if not st.session_state.login_ok:
-    st.title("🔐 头像抽奖系统")
+    st.title("🔐 头像抽奖")
     input_pwd = st.text_input("请输入抽奖密码", type="password")
     if st.button("登录系统"):
         if input_pwd == LOTTERY_PASSWORD:
@@ -45,7 +45,7 @@ if not st.session_state.login_ok:
     st.stop()
 
 # ===================== 主页面 =====================
-st.title("🎁 头像在线抽奖")
+st.title("🎁 头像在线")
 st.divider()
 
 # 刷新候选池：剔除已经中奖的人
