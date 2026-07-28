@@ -31,7 +31,7 @@ def set_bg_image(image_file):
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(255,255,255,0.6);
         z-index: 0;
     }}
     .stApp > div {{
